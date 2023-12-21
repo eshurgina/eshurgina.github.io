@@ -5,87 +5,128 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Накопление нужной суммы</title>
+<link rel="stylesheet" href="style.css">
 </head>
+<style>
+.icon-bar {
+  width: 100%;
+  background-color: #C270B8;
+  overflow: auto;
+}
 
-<body class="bg-gray-100">
-<div class="container mx-auto mt-8">
+.icon-bar a {
+  float: left;
+  width: 16%;/*расположение на стр*/
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 17px;
+}
 
-<div class="bg-blue-500 py-5 text-white">
-<h1 class="text-2xl font-bold pl-8">Сайт для расчета нужной суммы для накопления</h1>
-</div>
-<h2 class="ml-8 text-xl font-semibold my-6">Регистрация</h2>
-<div class="bg-white rounded-xl mx-8 px-12 py-8 mt-6 shadow-lg">
-<h2 class="text-lg font-semibold mb-6">Введите свои данные:</h2>
-<div id="photoPreview" class="mt-4 w-32 h-32 rounded-lg hidden"></div>
-<form id="dataForm" class="flex flex-col gap-y-6">
-<div>
-<label for="fullName" class="block text-sm font-medium text-gray-600 mt-6">ФИО:</label>
-<input type="text" class="border rounded-lg p-2 w-1/2" id="fullName" required>
-</div>
+.icon-bar a:hover {
+  background-color: #000;
+}
 
-<div>
-<label for="birthYear" class="block text-sm font-medium text-gray-600">Год рождения:</label>
-<select class="border rounded-lg p-2" id="birthYear" required>
-<option value="1990">1990</option>
-<option value="1991">1991</option>
-<option value="1992">1992</option>
-<option value="1993">1993</option>
-<option value="1994">1994</option>
-<option value="1995">1995</option>
-<option value="1996">1996</option>
-<option value="1997">1997</option>
-<option value="1998">1998</option>
-<option value="1999">1999</option>
-<option value="2000">2000</option>
-<option value="2001">2001</option>
-<option value="2002">2002</option>
-<option value="2003">2003</option>
-<option value="2004">2004</option>
+.active {
+  background-color: rgba(255, 250, 250, 0.5);
+}
+.sidebar
+{
+width:310px;
+height:100px;
+float:right;
+}
+</style>
 
-</select>
-</div>
+<div class="header">
+		<div class="text1">
+			<center><h1>Накопление нужной суммы</h1>			
+		</div>	
+	</div>
+	
+	<div class="sidebar">
+		<div class="text2">
+		</div>
+	</div>
+	
+	<div class="head1">
+	</div>
+	
+	<div class="content">
+		<div class="news">		
+		<center>
+		<h1>Зарегистрируйтесь на нашем сайте</h1>
+		<form id="dataForm" >
+			<div>
+			<label for="fullName" >ФИО:</label>
+			<input type="text"  id="fullName" size="55" required>
+			</div>
 
-<div>
-<label class="block text-sm font-medium text-gray-600">Категория:</label>
+			<div>
+			<label for="birthYear" >Год рождения:</label>
+			<select id="birthYear" required>
+			<option value="1990">1990</option>
+			<option value="1991">1991</option>
+			<option value="1992">1992</option>
+			<option value="1993">1993</option>
+			<option value="1994">1994</option>
+			<option value="1995">1995</option>
+			<option value="1996">1996</option>
+			<option value="1997">1997</option>
+			<option value="1998">1998</option>
+			<option value="1999">1999</option>
+			<option value="2000">2000</option>
+			<option value="2001">2001</option>
+			<option value="2002">2002</option>
+			<option value="2003">2003</option>
+			<option value="2004">2004</option>
+			</select>
+			</div>
+<br>
+			<div>
+			<label>Категория:</label>
+			<div class="flex">
+			<input type="radio" name="category" value="employee" id="employee" >
+			<label for="employee">Служащий</label>
+			<input type="radio" name="category" value="student" id="student" >
+			<label for="student">Учащийся</label>
+			<input type="radio" name="category" value="entrepreneur" id="entrepreneur">
+			<label for="entrepreneur">Предприниматель</label>
+			</div>
+			</div>
+<br>
+			<div>
+			<label >Сфера интересов:</label>
 <div class="flex">
-<input type="radio" name="category" value="employee" id="employee" class="mr-2 mt-1">
-<label for="employee">Служащий</label>
-<input type="radio" name="category" value="student" id="student" class="mx-2 mt-1">
-<label for="student">Учащийся</label>
-<input type="radio" name="category" value="entrepreneur" id="entrepreneur" class="ml-2 mt-1">
-<label for="entrepreneur">Предприниматель</label>
+			<input type="checkbox" name="interest" value="programming" id="programming">
+			<label for="programming">Программирование</label>
+			<input type="checkbox" name="interest" value="design" id="design">
+			<label for="design">Дизайн</label>
+			<input type="checkbox" name="interest" value="music" id="music">
+			<label for="music">Музыка</label>
+			<input type="checkbox" name="interest" value="paint" id="paint">
+			<label for="music">Рисование</label>
 </div>
-</div>
+			</div>
+<br>
+			<div>
+			<label for="photo" >Загрузка фото:</label>
+			<input type="file" id="photo" accept="image/jpeg, image/png" onchange="previewImage()">
+			</div>
 
-<div>
-<label class="block text-sm font-medium text-gray-600">Сфера интересов:</label>
+			<button type="button" 
+			onclick="saveData()">Сохранить</button>
+			</form>
+<br>
+			<div>
+			<button type="button" 
+			onclick="showData()">Показать данные</button>
+			</div
 
-<input type="checkbox" name="interest" value="programming" id="programming">
-<label for="programming">Программирование</label>
-<input type="checkbox" name="interest" value="design" id="design">
-<label for="design">Дизайн</label>
-<input type="checkbox" name="interest" value="music" id="music">
-<label for="music">Музыка</label>
-<input type="checkbox" name="interest" value="paint" id="paint">
-<label for="music">Рисование</label>
-
-</div>
-
-<div>
-<label for="photo" class="block text-sm font-medium text-gray-600">Загрузка фото:</label>
-<input type="file" id="photo" accept="image/jpeg, image/png" onchange="previewImage()">
-</div>
-
-<button type="button" class="bg-black text-white w-1/2 mx-auto rounded-xl py-2 mt-6"
-onclick="saveData()">Сохранить</button>
-</form>
-
-<div class="flex w-full mt-6">
-<button type="button" class="bg-blue-500 text-white w-1/2 mx-auto rounded-xl py-2"
-onclick="showData()">Показать данные</button>
-</div>
-
-<!— Добавьте после кнопки "Показать данные" —>
+		</div>
+	</div>
+	<!— Добавьте после кнопки "Показать данные" —>
 <div id="nextPageButtonContainer" class="flex w-full mt-6 hidden">
 <button type="button" class="bg-blue-500 text-white w-1/2 mx-auto rounded-xl py-2"
 onclick="goToNextPage()">Перейти на следующую страницу</button>
@@ -467,7 +508,6 @@ class="bg-blue-500 text-white w-1/2 mx-auto rounded-xl py-2">Показать с
 </div>
 </div>
 </div>
-
 <script>
 
 function previewImage() {
@@ -670,6 +710,18 @@ document.getElementById('savedOrder').classList.add('hidden');
 document.getElementById('showResultButtonContainer').classList.remove('hidden');
 }
 </script>
+
+	<div class="foot">
+	</div>
+
+	<div class="contacts">
+		<table width="100%">
+			<tr>
+			<td align="center"><h3>Телефон: +7 (950) 629 19 80 </h3></td>	
+			<td align="right"><h3>г. Арзамас </h3></td>
+			</tr>
+	</div>
+
 </body>
 
 </html>
