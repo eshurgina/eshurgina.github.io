@@ -209,7 +209,9 @@ li {  float:left; /*Размещаем список горизонтально �
 		<div class="news">		
 		<center>
 		<h1>Зарегистрируйтесь на нашем сайте</h1>
-		<form id="dataForm" >
+		<div id="photoPreview" class="mt-4 w-32 h-32 rounded-lg hidden"></div>
+<form id="dataForm">
+<div>
 			<div>
 			<label for="fullName" >ФИО:</label>
 			<input type="text"  id="fullName" size="55" required>
@@ -261,358 +263,98 @@ li {  float:left; /*Размещаем список горизонтально �
 			<label for="photo" >Загрузка фото:</label>
 			<input type="file" id="photo" accept="image/jpeg, image/png" onchange="previewImage()">
 			</div>
-			<button type="button" 
-			onclick="saveData()">Сохранить</button>
-			</form>
-<br>
+			<button type="button" onclick="saveData()">Сохранить</button>
+			</form><br>
 			<div>
-			<button type="button" 
-			onclick="showData()">Показать данные</button>
+			<button type="button" onclick="showData()">Показать данные</button>
 			</div>	
-	<!— Добавьте после кнопки "Показать данные" —>
-<div id="nextPageButtonContainer">
-<button type="button" onclick="goToNextPage()">Перейти на следующую страницу</button>
-</div>	
-<div id="showCalculationContainer">
-<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-<h2 class="text-2xl font-bold mb-4">Рассчет суммы </h2>
-<!— Форма сбора данных —>
-<form id="calculationForm">
-<div class="mb-4">
-<label for="summa" class="block text-sm font-medium text-gray-600">Сумма, которую нужно накопить</label>
-<input type="number" id="summa" name="summa" class="mt-1 p-2 border rounded w-full" required>
-</div>
-<div class="mb-4">
-<label for="hourstavka" class="block text-sm font-medium text-gray-600">Часовая ставка</label>
-<input type="number" id="hourstavka" name="hourstavka" class="mt-1 p-2 border rounded w-full" required>
-</div>
-<div class="mb-4">
-<label for="premiya" class="block text-sm font-medium text-gray-600">Премия</label>
-<input type="number" id="premiya" name="premiya"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-<label for="result">Вывести результат </label>
-			<div >
-			<input type="radio" name="result" value="hour" id="hour" >
-			<label for="hour">часы</label>
-			<input type="radio" name="result" value="dni" id="dni" >
-			<label for="dni">дни</label>
-			<input type="radio" name="result" value="week" id="week">
-			<label for="week">недели</label>
-			<input type="radio" name="result" value="year" id="year">
-			<label for="year">года</label>
+				<!— Добавьте после кнопки "Показать данные" —>
+			<div id="nextPageButtonContainer">
+			<button type="button" onclick="goToNextPage()">Перейти на следующую страницу</button>
+			</div>	
+			
+			<div id="showCalculationContainer" class=" p-25 mt-10 hidden">
+			<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
+			<h2 >Рассчет суммы </h2><br>
+			<!— Форма сбора данных —>
+			<form id="calculationForm">
+			<div class="mb-4">
+			<label for="summa" class="block text-sm font-medium ">Сумма, которую нужно накопить</label>
+			<input type="number" id="summa" name="summa" class="mt-1 p-2 border rounded w-full" required>
 			</div>
+			<div class="mb-4">
+			<label for="hourstavka" class="block text-sm font-medium ">Часовая ставка</label>
+			<input type="number" id="hourstavka" name="hourstavka" class="mt-1 p-2 border rounded w-full" required>
+			</div>
+			<div class="mb-4">
+			<label for="premiya" class="block text-sm font-medium ">Премия</label>
+			<input type="number" id="premiya" name="premiya" class="mt-1 p-2 border rounded w-full" required>
+			</div>
+			<label for="prazdnik">Работаете в праздничные или выходные дни?</label>
+			<div >
+			<input type="radio" name="prazdnik" value="yes" id="yes" >
+			<label for="yes">да</label>
+			<input type="radio" name="prazdnik" value="no" id="no" >
+			<label for="no">нет</label>			
+			</div><br> 
+			
+			<label for="res">Вывести результат в</label>
+			<div >
+			<input type="radio" name="res" value="hour" id="hour" >
+			<label for="hour">часах</label>
+			<input type="radio" name="res" value="dni" id="dni" >
+			<label for="dni">днях</label>
+			<input type="radio" name="res" value="week" id="week">
+			<label for="week">неделях</label>
+			<input type="radio" name="res" value="year" id="year">
+			<label for="year">годах</label>
+			</div><br>
 
-<button type="button" onclick="calculateBoards()"class="bg-blue-500 text-white p-2 rounded">Рассчитать</button>
-</form>
-</div>
+		<button type="button" onclick="calculateBoards()">Рассчитать</button>
+		</form>
+		</div>
 
 <br>
 
-<div id="showResultCalculation" class="bg-gray-100 p-25 mt-10 hidden">
-<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-<h2 class="text-2xl font-bold mb-4">Бланк заказа</h2>
-<form id="result">
-<div class="mb-4">
-<label for="areaSizeRes" class="block text-sm font-medium text-gray-600">Размер площади
-(м²)</label>
-<input type="text" id="areaSizeRes" name="areaSizeRes"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
+		<div id="showResultCalculation" class="p-25 mt-10 hidden">
+		<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
+		<h2 class="text-2xl font-bold mb-4">Рассчет количества времени</h2>
+			<form id="result">
+				<div class="mb-4">
+				<label for="summaRes" class="block text-sm font-medium ">Сумма, которую нужно накопить</label>
+				<input type="number" id="summaRes" name="summaRes" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="hourstavkaRes" class="block text-sm font-medium ">Часовая ставка</label>
+				<input type="number" id="hourstavkaRes" name="hourstavkaRes" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="premiyaRes" class="block text-sm font-medium ">Премия</label>
+				<input type="number" id="premiyaRes" name="premiyaRes" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="prazdnikRes" class="block text-sm font-medium ">Работа в праздничные или выходные дни</label>
+				<input type="number" id="prazdnikRes" name="prazdnikRes" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="summaitog" class="block text-sm font-medium ">Итоговая сумма для накопления </label>
+				<input type="number" id="summaitog" name="summaitog" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="resRes" class="block text-sm font-medium ">Результат в </label>
+				<input type="text" id="resRes" name="resRes" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+				<div class="mb-4">
+				<label for="vremyaitog" class="block text-sm font-medium ">Итоговое время </label>
+				<input type="number" id="vremyaitog" name="vremyaitog" class="mt-1 p-2 border rounded w-full" required>
+				</div>
+			</form>
+		</div>
+		</div>	
 
-<div class="mb-4">
-<label for="boardThicknessRes" class="block text-sm font-medium text-gray-600">Толщина
-доски 1 сорта
-(м)</label>
-<input type="text" id="boardThicknessRes" name="boardThicknessRes"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardWidthRes" class="block text-sm font-medium text-gray-600">Ширина доски
-1 сорта(м)</label>
-<input type="text" id="boardWidthRes" name="boardWidthRes"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="firstGradeCostRes" class="block text-sm font-medium text-gray-600">Стоимость
-1
-сорта (руб/м³)</label>
-<input type="text" id="firstGradeCostRes" name="firstGradeCostRes"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardThicknessResTwo"
-class="block text-sm font-medium text-gray-600">Толщина доски 2 сорта
-(м)</label>
-<input type="text" id="boardThicknessResTwo" name="boardThicknessResTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardWidthResTwo" class="block text-sm font-medium text-gray-600">Ширина
-доски
-2 сорта(м)</label>
-<input type="text" id="boardWidthResTwo" name="boardWidthResTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="secondGradeCostRes"
-class="block text-sm font-medium text-gray-600">Стоимость 2
-сорта (руб/м³)</label>
-<input type="text" id="secondGradeCostRes" name="secondGradeCostRes"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="clientPercentageRes" class="block text-sm font-medium text-gray-600">Процент
-досок
-2 сорта для клиента
-(%)</label>
-<input type="text" id="clientPercentageRes" name="clientPercentageRes"
-class="mt-1 p-2
-border rounded w-full" required>
-</div>
-</form>
-
-<h1 class="text-2xl font-bold mb-4">Расчеты</h1>
-<form id="result2">
-<div class="mb-4">
-<label for="boardVolume" class="block text-sm font-medium text-gray-600">Объем одной
-доски м³ 1 сорта</label>
-<input type="text" id="boardVolume" name="boardVolume"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardsPerCubicMeter" class="block text-sm font-medium text-gray-600">Досок в
-одном кубометре 1 сорта</label>
-<input type="text" id="boardsPerCubicMeter" name="boardsPerCubicMeter"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="squareMetersPerCubic"
-class="block text-sm font-medium text-gray-600">Квадратных метров в одном кубе досок
-1 сорта:</label>
-<input type="text" id="squareMetersPerCubic" name="squareMetersPerCubic"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardVolumeTwo" class="block text-sm font-medium text-gray-600">Объем одной
-доски м³ 2 сорта</label>
-<input type="text" id="boardVolumeTwo" name="boardVolumeTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="boardsPerCubicMeterTwo"
-class="block text-sm font-medium text-gray-600">Досок в одном кубометре 2
-сорта</label>
-<input type="text" id="boardsPerCubicMeterTwo" name="boardsPerCubicMeterTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="squareMetersPerCubicTwo"
-class="block text-sm font-medium text-gray-600">Квадратных метров в одном кубе досок
-2 cорта:</label>
-<input type="text" id="squareMetersPerCubicTwo" name="squareMetersPerCubicTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="totalFirstGradeCost"
-class="block text-sm font-medium text-gray-600">Итоговая стоимость 1 сорта:</label>
-<input type="text" id="totalFirstGradeCost" name="totalFirstGradeCost"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="totalSecondGradeCost"
-class="block text-sm font-medium text-gray-600">Итоговая стоимость 2 сорта:</label>
-<input type="text" id="totalSecondGradeCost" name="totalSecondGradeCost"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="totalCount" class="block text-sm font-medium text-gray-600">Общее количество
-досок:</label>
-<input type="text" id="totalCount" name="totalCount"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="totalOrderCost" class="block text-sm font-medium text-gray-600">Общая
-стоимость заказа:</label>
-<input type="text" id="totalOrderCost" name="totalOrderCost"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div id="results" class="mt-8 hidden">
-<div id="orderSummary" class="mb-4"></div>
-<button type = "button" onclick="saveOrder()" class="bg-green-500 text-white p-2 rounded">Сохранить
-бланк
-заказа</button>
-</div>
-</form>
-</div>
-</div>
-
-<!— Окно для отображения сохраненных данных —>
-<div id="savedOrder" class="mt-8 hidden">
-<h3 class="text-lg font-semibold mb-4">Сохраненный заказ</h3>
-<form id="savedOrderForm">
-<div class="mb-4">
-<label for="savedAreaSize" class="block text-sm font-medium text-gray-600">Размер площади
-(м²)</label>
-<input type="text" id="savedAreaSize" name="savedAreaSize"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardThickness" class="block text-sm font-medium text-gray-600">Толщина
-доски 1 сорта (м)</label>
-<input type="text" id="savedBoardThickness" name="savedBoardThickness"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardWidth" class="block text-sm font-medium text-gray-600">Ширина доски
-1 сорта(м)</label>
-<input type="text" id="savedBoardWidth" name="savedBoardWidth"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedFirstGradeCost" class="block text-sm font-medium
-text-gray-600">Стоимость 1
-сорта
-(руб/м³)</label>
-<input type="text" id="savedFirstGradeCost" name="savedFirstGradeCost"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardThicknessTwo" class="block text-sm font-medium text-gray-600">Толщина
-доски 2 сорта (м)</label>
-<input type="text" id="savedBoardThicknessTwo" name="savedBoardThicknessTwo"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardWidthTwo" class="block text-sm font-medium text-gray-600">Ширина доски
-2 сорта(м)</label>
-<input type="text" id="savedBoardWidthTwo" name="savedBoardWidthTwo"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedSecondGradeCost" class="block text-sm font-medium text-gray-600">Стоимость
-2 сорта
-(руб/м³)</label>
-<input type="text" id="savedSecondGradeCost" name="savedSecondGradeCost"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedClientPercentage" class="block text-sm font-medium text-gray-600">Процент
-досок 2 сорта для
-клиента (%)</label>
-<input type="text" id="savedClientPercentage" name="savedClientPercentage"
-class="mt-1 p-2 border rounded w-full" readonly>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardVolume" class="block text-sm font-medium text-gray-600">Объем одной
-доски м³ 1 сорта</label>
-<input type="text" id="savedBoardVolume" name="savedBoardVolume"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardsPerCubicMeter" class="block text-sm font-medium text-gray-600">Досок
-в одном кубометре 1 сорта</label>
-<input type="text" id="savedBoardsPerCubicMeter" name="savedBoardsPerCubicMeter"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedSquareMetersPerCubic"
-class="block text-sm font-medium text-gray-600">Квадратных метров в одном кубе досок 1
-сорта:</label>
-<input type="text" id="savedSquareMetersPerCubic" name="savedSquareMetersPerCubic"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardVolumeTwo" class="block text-sm font-medium text-gray-600">Объем одной
-доски м³ 2 сорта</label>
-<input type="text" id="savedBoardVolumeTwo" name="savedBoardVolumeTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedBoardsPerCubicMeterTwo"
-class="block text-sm font-medium text-gray-600">Досок в одном кубометре 2 сорта</label>
-<input type="text" id="savedBoardsPerCubicMeterTwo" name="savedBoardsPerCubicMeterTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedSquareMetersPerCubicTwo"
-class="block text-sm font-medium text-gray-600">Квадратных метров в одном кубе досок 2
-cорта:</label>
-<input type="text" id="savedSquareMetersPerCubicTwo" name="savedSquareMetersPerCubicTwo"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedTotalFirstGradeCost"
-class="block text-sm font-medium text-gray-600">Итоговая стоимость 1 сорта:</label>
-<input type="text" id="savedTotalFirstGradeCost" name="savedTotalFirstGradeCost"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedTotalSecondGradeCost"
-class="block text-sm font-medium text-gray-600">Итоговая стоимость 2 сорта:</label>
-<input type="text" id="savedTotalSecondGradeCost" name="savedTotalSecondGradeCost"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedTotalCount" class="block text-sm font-medium text-gray-600">Общее
-количество досок:</label>
-<input type="text" id="savedTotalCount" name="savedTotalCount"
-class="mt-1 p-2 border rounded w-full" required>
-</div>
-
-<div class="mb-4">
-<label for="savedTotalOrderCost" class="block text-sm font-medium text-gray-600">Общая
-стоимость заказа:</label>
-<input type="text" id="savedTotalOrderCost" name="savedTotalOrderCost"
-class="mt-1 p-2 border rounded
-w-full" required>
-</div>
-
-<button type="button" onclick="toggleSavedOrder()"
-class="bg-gray-500 text-white p-2 rounded">Свернуть</button>
-</form>
-</div>
-<div id="showResultButtonContainer" class="flex w-full mt-6">
-<button onclick="showSavedOrder()"
-class="bg-blue-500 text-white w-1/2 mx-auto rounded-xl py-2">Показать сохраненный
-заказ</button>
-</div>
-</div>
-</div>
-</div>
-			</div>
+	</div>
+				</div>
+	</div>			
 	</div>
 <script>
 
@@ -678,143 +420,62 @@ document.getElementById('showCalculationContainer').classList.remove('hidden');
 
 function calculateBoards() {
 // Получение значений из формы
-const areaSize = parseFloat(document.getElementById('areaSize').value);
-const boardThickness = parseFloat(document.getElementById('boardThickness').value);
-const boardWidth = parseFloat(document.getElementById('boardWidth').value);
-const boardThicknessTwo = parseFloat(document.getElementById('boardThicknessTwo').value);
-const boardWidthTwo = parseFloat(document.getElementById('boardWidthTwo').value);
-const firstGradeCost = parseFloat(document.getElementById('firstGradeCost').value);
-const secondGradeCost = parseFloat(document.getElementById('secondGradeCost').value);
-const clientPercentage = parseFloat(document.getElementById('clientPercentage').value);
+const summa = parseFloat(document.getElementById('summa').value);
+const hourstavka = parseFloat(document.getElementById('hourstavka').value);
+const premiya = parseFloat(document.getElementById('premiya').value);
+const prazdnik = document.querySelector('input[name="prazdnik"]:checked').value;
+const res = document.querySelector('input[name="res"]:checked').value;
 
 // Логика расчетов
-const boardVolume = areaSize / (boardThickness * boardWidth);
-const boardsPerCubicMeter = 1 / boardVolume;
-const squareMetersPerCubic = boardThickness * boardWidth;
+const summaitog = (summa - premiya);
 
-const totalFirstGradeCost = firstGradeCost * boardVolume * 100;
+ var hour = summaitog / hourstavka;
+      var dni = hour / 24;
+      var week = dni / 7;
+      var year = dni / 365;
 
-const boardVolumeTwo = areaSize / (boardThicknessTwo * boardWidthTwo);
-const boardsPerCubicMeterTwo = 1 / boardVolumeTwo;
-const squareMetersPerCubicTwo = boardThicknessTwo * boardWidthTwo;
+if (res == 'hour' )
+{
+	if(prazdnik =='yes')
+		vremyaitog = hour *0.9;
+	else
+		vremyaitog = hour;
+}
+else if (res == 'dni' )
+{
+	if(prazdnik =='yes')
+		vremyaitog = dni *0.9;
+	else
+		vremyaitog = dni;
+}
+else if (res == 'week' )
+{
+	if(prazdnik =='yes')
+		vremyaitog = week *0.9;
+	else
+		vremyaitog = week;
+}
+else 
+{
+	if(prazdnik =='yes')
+		vremyaitog = year *0.9;
+	else
+		vremyaitog = year;
+}
+document.getElementById('summaRes').value = summa;
+document.getElementById('hourstavkaRes').value = hourstavka;
+document.getElementById('premiyaRes').value = premiya;
+document.getElementById('prazdnikRes').value = prazdnik;
+document.getElementById('summaitog').value = summaitog.toFixed(2);
+document.getElementById('resRes').value = res;
+document.getElementById('vremyaitog').value = vremyaitog.toFixed(2);
 
-const totalSecondGradeCost = secondGradeCost * boardVolumeTwo * (clientPercentage / 100) * 100;
-const totalOrderCost = totalFirstGradeCost + totalSecondGradeCost;
-
-const totalCount = Math.ceil((areaSize * clientPercentage) / ((boardVolume * clientPercentage) - (boardVolume * (clientPercentage - 1)) + boardVolumeTwo));
-
-document.getElementById('areaSizeRes').value = areaSize;
-document.getElementById('boardThicknessRes').value = boardThickness;
-document.getElementById('boardWidthRes').value = boardWidth;
-document.getElementById('boardThicknessResTwo').value = boardThicknessTwo;
-document.getElementById('boardWidthResTwo').value = boardWidthTwo;
-document.getElementById('firstGradeCostRes').value = firstGradeCost;
-document.getElementById('secondGradeCostRes').value = secondGradeCost;
-document.getElementById('clientPercentageRes').value = clientPercentage;
-
-document.getElementById('boardVolume').value = boardVolume.toFixed(2);
-document.getElementById('boardsPerCubicMeter').value = boardsPerCubicMeter.toFixed(2);
-document.getElementById('squareMetersPerCubic').value = squareMetersPerCubic.toFixed(2);
-document.getElementById('boardVolumeTwo').value = boardVolumeTwo.toFixed(2);
-document.getElementById('boardsPerCubicMeterTwo').value = boardsPerCubicMeterTwo.toFixed(2);
-document.getElementById('squareMetersPerCubicTwo').value = squareMetersPerCubicTwo.toFixed(2);
-document.getElementById('totalFirstGradeCost').value = totalFirstGradeCost.toFixed(2);
-document.getElementById('totalSecondGradeCost').value = totalSecondGradeCost.toFixed(2);
-document.getElementById('totalCount').value = totalCount.toFixed(2);
-document.getElementById('totalOrderCost').value = totalOrderCost.toFixed(2);
 
 // Показать результаты расчета
-document.getElementById('results').classList.remove('hidden');
+
 document.getElementById('showResultCalculation').classList.remove('hidden');
 }
 
-function saveOrder() {
-// Получение значений из формы
-const areaSize = parseFloat(document.getElementById('areaSizeRes').value);
-const boardThickness = parseFloat(document.getElementById('boardThicknessRes').value);
-const boardWidth = parseFloat(document.getElementById('boardWidthRes').value);
-const boardThicknessTwo = parseFloat(document.getElementById('boardThicknessResTwo').value);
-const boardWidthTwo = parseFloat(document.getElementById('boardWidthResTwo').value);
-const firstGradeCost = parseFloat(document.getElementById('firstGradeCostRes').value);
-const secondGradeCost = parseFloat(document.getElementById('secondGradeCostRes').value);
-const clientPercentage = parseFloat(document.getElementById('clientPercentageRes').value);
-
-const boardVolume = parseFloat(document.getElementById('boardVolume').value);
-const boardsPerCubicMeter = parseFloat(document.getElementById('boardsPerCubicMeter').value);
-const squareMetersPerCubic = parseFloat(document.getElementById('squareMetersPerCubic').value);
-const boardVolumeTwo = parseFloat(document.getElementById('boardVolumeTwo').value);
-const boardsPerCubicMeterTwo = parseFloat(document.getElementById('boardsPerCubicMeterTwo').value);
-const squareMetersPerCubicTwo = parseFloat(document.getElementById('squareMetersPerCubicTwo').value);
-const totalFirstGradeCost = parseFloat(document.getElementById('totalFirstGradeCost').value);
-const totalSecondGradeCost = parseFloat(document.getElementById('totalSecondGradeCost').value);
-const totalCount = parseFloat(document.getElementById('totalCount').value);
-const totalOrderCost = parseFloat(document.getElementById('totalOrderCost').value);
-
-// Логика сохранения бланка заказа
-const orderDetails = {
-areaSize,
-boardThickness,
-boardWidth,
-boardThicknessTwo,
-boardWidthTwo,
-firstGradeCost,
-secondGradeCost,
-clientPercentage,
-boardVolume,
-boardsPerCubicMeter,
-squareMetersPerCubic,
-boardVolumeTwo,
-boardsPerCubicMeterTwo,
-squareMetersPerCubicTwo,
-totalFirstGradeCost,
-totalSecondGradeCost,
-totalCount,
-totalOrderCost
-};
-
-// Пример использования localStorage для сохранения данных
-localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
-
-alert('Бланк заказа сохранен!');
-}
-
-function showSavedOrder() {
-const savedOrderDetails = JSON.parse(localStorage.getItem('orderDetails'));
-
-if (savedOrderDetails) {
-document.getElementById('savedAreaSize').value = savedOrderDetails.areaSize;
-document.getElementById('savedBoardThickness').value = savedOrderDetails.boardThickness;
-document.getElementById('savedBoardWidth').value = savedOrderDetails.boardWidth;
-document.getElementById('savedBoardThicknessTwo').value = savedOrderDetails.boardThicknessTwo;
-document.getElementById('savedBoardWidthTwo').value =
-savedOrderDetails.boardWidthTwo;
-document.getElementById('savedFirstGradeCost').value = savedOrderDetails.firstGradeCost;
-document.getElementById('savedSecondGradeCost').value = savedOrderDetails.secondGradeCost;
-document.getElementById('savedClientPercentage').value = savedOrderDetails.clientPercentage;
-
-document.getElementById('savedBoardVolume').value = savedOrderDetails.boardVolume;
-document.getElementById('savedBoardsPerCubicMeter').value = savedOrderDetails.boardsPerCubicMeter;
-document.getElementById('savedSquareMetersPerCubic').value = savedOrderDetails.squareMetersPerCubic;
-document.getElementById('savedBoardVolumeTwo').value = savedOrderDetails.boardVolumeTwo;
-document.getElementById('savedBoardsPerCubicMeterTwo').value = savedOrderDetails.boardsPerCubicMeterTwo;
-document.getElementById('savedSquareMetersPerCubicTwo').value = savedOrderDetails.squareMetersPerCubicTwo;
-document.getElementById('savedTotalFirstGradeCost').value = savedOrderDetails.totalFirstGradeCost;
-document.getElementById('savedTotalSecondGradeCost').value = savedOrderDetails.totalSecondGradeCost;
-document.getElementById('savedTotalCount').value = savedOrderDetails.totalCount;
-document.getElementById('savedTotalOrderCost').value = savedOrderDetails.totalOrderCost;
-
-document.getElementById('savedOrder').classList.remove('hidden');
-
-document.getElementById('showResultButtonContainer').classList.add('hidden');
-} else {
-alert('Нет сохраненных данных заказа.');
-}
-}
-
-function toggleSavedOrder() {
-document.getElementById('savedOrder').classList.add('hidden');
-document.getElementById('showResultButtonContainer').classList.remove('hidden');
-}
 </script>
 
 	<div class="foot">
