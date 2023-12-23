@@ -275,7 +275,7 @@ li {  float:left; /*Размещаем список горизонтально �
 			
 			<div id="showCalculationContainer" class=" p-25 mt-10 hidden">
 			<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-			<h2 >Рассчет суммы </h2><br>
+			<h2 >Расчет суммы </h2><br>
 			<!— Форма сбора данных —>
 			<form id="calculationForm">
 			<div class="mb-4">
@@ -318,7 +318,7 @@ li {  float:left; /*Размещаем список горизонтально �
 
 		<div id="showResultCalculation" class="p-25 mt-10 hidden">
 		<div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-		<h2 class="text-2xl font-bold mb-4">Рассчет количества времени</h2>
+		<h2 class="text-2xl font-bold mb-4">Расчет количества времени</h2>
 			<form id="result">
 				<div class="mb-4">
 				<label for="summaRes" class="block text-sm font-medium ">Сумма, которую нужно накопить</label>
@@ -334,7 +334,7 @@ li {  float:left; /*Размещаем список горизонтально �
 				</div>
 				<div class="mb-4">
 				<label for="prazdnikRes" class="block text-sm font-medium ">Работа в праздничные или выходные дни</label>
-				<input type="number" id="prazdnikRes" name="prazdnikRes" class="mt-1 p-2 border rounded w-full" required>
+				<input type="text" id="prazdnikRes" name="prazdnikRes" class="mt-1 p-2 border rounded w-full" required>
 				</div>
 				<div class="mb-4">
 				<label for="summaitog" class="block text-sm font-medium ">Итоговая сумма для накопления </label>
@@ -462,9 +462,9 @@ else
 	else
 		vremyaitog = year;
 }
-document.getElementById('summaRes').value = summa;
-document.getElementById('hourstavkaRes').value = hourstavka;
-document.getElementById('premiyaRes').value = premiya;
+document.getElementById('summaRes').value = summa.toFixed(2);
+document.getElementById('hourstavkaRes').value = hourstavka.toFixed(2);
+document.getElementById('premiyaRes').value = premiya.toFixed(2);
 document.getElementById('prazdnikRes').value = prazdnik;
 document.getElementById('summaitog').value = summaitog.toFixed(2);
 document.getElementById('resRes').value = res;
